@@ -7,16 +7,21 @@ HTMLWidgets.widget({
   factory: function(el, width, height) {
 
     var tuiChart = tui.chart;
-    var widget;
+    var widget, options = {}, data = {};
 
     return {
 
       renderValue: function(x) {
 
         var chartType = tuiChart[x.type];
-        var options = x.options, data = x.data;
+        if (x.hasOwnProperty('options')) {
+          options = x.options;
+        }
+        if (x.hasOwnProperty('data')) {
+          data = x.data;
+        }
 
-        if (!options.chart) {
+        if (options.hasOwnProperty('chart') === false) {
           options.chart = {};
         }
         options.chart.width = width;

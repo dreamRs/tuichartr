@@ -2,11 +2,27 @@
 % Please edit documentation in R/tuichart.R
 \name{tuichart}
 \alias{tuichart}
-\title{<Add Title>}
+\title{Create a \code{tuichart} htmlwidget}
 \usage{
-tuichart(data = NULL, type = "bar", options = list(), width = NULL,
+tuichart(type = "bar", data = NULL, options = NULL, width = NULL,
   height = NULL, elementId = NULL)
 }
+\arguments{
+\item{type}{Type of chart.}
+
+\item{data}{A \code{list} of parameters for the data used in the chart.}
+
+\item{options}{A \code{list} of options for the chart.}
+
+\item{width}{A numeric input in pixels.}
+
+\item{height}{A numeric input in pixels.}
+
+\item{elementId}{Use an explicit element ID for the widget.}
+}
+\value{
+A \code{tuichart} \code{htmlwidget} object.
+}
 \description{
-<Add Description>
+Create a \code{tuichart} htmlwidget
 }

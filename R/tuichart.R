@@ -1,19 +1,28 @@
-#' <Add Title>
+
+#' Create a \code{tuichart} htmlwidget
 #'
-#' <Add Description>
+#' @param type Type of chart.
+#' @param data A \code{list} of parameters for the data used in the chart.
+#' @param options A \code{list} of options for the chart.
+#' @param width A numeric input in pixels.
+#' @param height A numeric input in pixels.
+#' @param elementId Use an explicit element ID for the widget.
+#'
+#' @return A \code{tuichart} \code{htmlwidget} object.
+#' @export
 #'
 #' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget
 #'
-#' @export
-tuichart <- function(data = NULL, type = "bar", options = list(), width = NULL, height = NULL, elementId = NULL) {
+# @examples
+tuichart <- function(type = "bar", data = NULL, options = NULL, width = NULL, height = NULL, elementId = NULL) {
 
   type <- match.arg(type, choices = c("bar", "column", "line", "area", "scatter", "heatmap"))
 
-  x <- list(
+  x <- dropNulls(list(
     type = paste0(type, "Chart"),
     data = data,
     options = options
-  )
+  ))
 
   htmlwidgets::createWidget(
     name = 'tuichart',

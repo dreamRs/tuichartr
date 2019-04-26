@@ -15,5 +15,7 @@ Imports:
     htmlwidgets,
     htmltools,
     shiny,
+    ggplot2,
+    rlang,
     magrittr
 RoxygenNote: 6.1.1
