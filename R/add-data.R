@@ -112,5 +112,59 @@ add_heat_data <- function(tui, data, mapping) {
   tui
 }
 
+#' @export
+#'
+#' @rdname add-data
+add_tree_data <- function(tui, data, mapping) {
+  data <- as.data.frame(data, stringsAsFactors = FALSE)
+  mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
+  mapdata <- lapply(
+    X = mapdata,
+    FUN = function(x) {
+      if (inherits(x, "factor"))
+        as.character(x)
+      else
+        x
+    }
+  )
+  mapdata <- as.data.frame(mapdata, stringsAsFactors = FALSE)
+  tui$x$data <- list(
+    series = split_rec(mapdata)
+  )
+  tui
+}
 
+make_child <- function(labels, values) {
+  mapply(
+    FUN = function(label, value) {
+      list(
+        label = label,
+        value = value
+      )
+    },
+    label = labels,
+    value = values,
+    SIMPLIFY = FALSE,
+    USE.NAMES = FALSE
+  )
+}
+
+split_rec <- function(df, level = 1) {
+  if (is.null(df[[paste0("level", level)]])) {
+    stop("[tuichart - treemap] Incorrect type of data, groups levels are probably not unique", call. = FALSE)
+  }
+  if (all(table(df[[paste0("level", level)]]) == 1)) {
+    list(
+      label = unique(df[[paste0("level", level - 1)]]),
+      children = make_child(df[[paste0("level", level)]], values = df$value)
+    )
+  } else {
+    dfsplit <- split(x = df, f = df[[paste0("level", level)]])
+    lapply(
+      X = unname(dfsplit),
+      FUN = split_rec,
+      level = level + 1
+    )
+  }
+}
 

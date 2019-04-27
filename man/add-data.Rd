@@ -5,6 +5,7 @@
 \alias{add_data}
 \alias{add_scatter_data}
 \alias{add_heat_data}
+\alias{add_tree_data}
 \title{Add data to a \code{tuichart}}
 \usage{
 add_data(tui, data, mapping)
@@ -12,6 +13,8 @@ add_data(tui, data, mapping)
 add_scatter_data(tui, data, mapping)
 
 add_heat_data(tui, data, mapping)
+
+add_tree_data(tui, data, mapping)
 }
 \arguments{
 \item{tui}{A \code{tuichart} \code{htmlwidget} object.}
