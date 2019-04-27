@@ -11,12 +11,12 @@
 #' @return A \code{tuichart} \code{htmlwidget} object.
 #' @export
 #'
-#' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget
+#' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget sizingPolicy
 #'
 # @examples
 tuichart <- function(type = "bar", data = NULL, options = NULL, width = NULL, height = NULL, elementId = NULL) {
 
-  type <- match.arg(type, choices = c("bar", "column", "line", "area", "scatter", "heatmap"))
+  type <- match.arg(type, choices = c("bar", "column", "line", "area", "scatter", "bubble", "heatmap", "treemap"))
 
   theme <- getOption("tuichartr.theme")
   if (!is.null(theme)) {
@@ -37,7 +37,20 @@ tuichart <- function(type = "bar", data = NULL, options = NULL, width = NULL, he
     width = width,
     height = height,
     package = 'tuichartr',
-    elementId = elementId
+    elementId = elementId,
+    sizingPolicy = htmlwidgets::sizingPolicy(
+      defaultWidth = "100%",
+      defaultHeight = "100%",
+      viewer.defaultHeight = "100%",
+      viewer.defaultWidth = "100%",
+      knitr.figure = FALSE,
+      knitr.defaultWidth = "100%",
+      knitr.defaultHeight = "350px",
+      browser.fill = TRUE,
+      viewer.suppress = FALSE,
+      browser.external = TRUE,
+      padding = 20
+    )
   )
 }
 

@@ -1,0 +1,185 @@
+---
+title: "starting-with-tuichartr"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{starting-with-tuichartr}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(tuichartr)
+library(gapminder)
+library(dplyr)
+library(tidyr)
+```
+
+
+# Bar / column charts
+
+## Simple columns
+
+```{r}
+# Datas
+simple_cols <- gapminder_unfiltered %>% 
+  filter(year == 2007) %>% 
+  count(continent)
+
+# Chart
+tuichart("column") %>% 
+  add_data(simple_cols, aes(x = continent, y = n)) %>% 
+  tui_chart(title = "Countries by continent in 2007") %>% 
+  tui_yAxis(title = "Number of countries") %>% 
+  tui_legend(visible = FALSE) %>% 
+  tui_series(showLabel = TRUE)
+```
+
+## Dodge columns
+
+```{r}
+# Datas
+dodge_cols <- gapminder_unfiltered %>% 
+  filter(year %in% c(1950, 2007)) %>% 
+  count(continent, year) %>% 
+  complete(continent, year)
+
+# Chart
+tuichart("column") %>% 
+  add_data(dodge_cols, aes(x = continent, y = n, group = year)) %>% 
+  tui_chart(title = "Countries by continent: 1950 vs 2007") %>% 
+  tui_yAxis(title = "Number of countries") %>% 
+  tui_series(showLabel = TRUE)
+```
+
+
+## Stack columns
+
+```{r}
+# Datas
+stacked_cols <- gapminder_unfiltered %>% 
+  filter(year == 2007) %>% 
+  mutate(meanLifeExp = if_else(lifeExp >= mean(lifeExp), "above mean", "under mean")) %>% 
+  count(continent, meanLifeExp) %>% 
+  complete(continent, meanLifeExp)
+
+# Chart
+tuichart("column") %>% 
+  add_data(stacked_cols, aes(x = continent, y = n, group = meanLifeExp)) %>% 
+  tui_chart(title = "Countries by continent: position in relation to average life expectancy") %>% 
+  tui_yAxis(title = "Number of countries") %>% 
+  tui_tooltip(grouped = TRUE) %>%
+  tui_series(stackType = "normal")
+```
+
+
+## Horizontal bars
+
+```{r}
+# Datas
+horiz_bars <- gapminder %>% 
+  filter(continent == "Americas", year == 2007) %>% 
+  arrange(lifeExp)
+
+# Chart
+tuichart("bar") %>% 
+  add_data(horiz_bars, aes(x = country, y = lifeExp)) %>% 
+  tui_chart(title = "Life expectancy in America") %>% 
+  tui_xAxis(title = "Life expectancy in 2007") %>% 
+  tui_legend(visible = FALSE)
+```
+
+
+
+
+# Lines
+
+
+## One serie
+
+```{r}
+# Datas
+line_one <- gapminder %>% 
+  filter(country == "Nigeria")
+
+# Chart
+tuichart("line") %>% 
+  add_data(line_one, aes(x = year, y = lifeExp)) %>% 
+  tui_chart(title = "Life expectancy in Nigeria") %>% 
+  tui_yAxis(title = "Life expectancy evolution") %>% 
+  tui_legend(visible = FALSE)
+```
+
+
+## Several series
+
+```{r}
+# Datas
+lines_mult <- gapminder %>% 
+  filter(country %in% c("Nigeria", "Cameroon")) %>% 
+  mutate(country = droplevels(country))
+
+# Chart
+tuichart("line") %>% 
+  add_data(lines_mult, aes(x = year, y = lifeExp, group = country)) %>% 
+  tui_chart(title = "Life expectancy in Nigeria & Cameroon") %>% 
+  tui_yAxis(title = "Life expectancy evolution") %>% 
+  tui_legend(visible = TRUE, align = "bottom")
+```
+
+
+# Scatter & bubbles
+
+## Basic scatter
+
+```{r}
+# Datas
+scatter <- gapminder %>% 
+  filter(year == 2007)
+
+# Chart
+tuichart("scatter") %>% 
+  add_scatter_data(scatter, aes(x = gdpPercap, y = lifeExp, label = country)) %>% 
+  tui_chart(title = "Life expectancy X GDP per capita") %>% 
+  tui_yAxis(title = "Life expectancy") %>% 
+  tui_xAxis(title = "GDP per capita") %>% 
+  tui_legend(visible = FALSE)
+```
+
+
+## Group scatter
+
+```{r}
+# Chart
+tuichart("scatter") %>% 
+  add_scatter_data(scatter, aes(x = gdpPercap, y = lifeExp, group = continent, label = country)) %>% 
+  tui_chart(title = "Life expectancy X GDP per capita") %>% 
+  tui_yAxis(title = "Life expectancy") %>% 
+  tui_xAxis(title = "GDP per capita") %>% 
+  tui_legend(visible = TRUE, align = "top")
+```
+
+
+## Bubbles
+
+```{r}
+# Chart
+tuichart("bubble") %>% 
+  add_scatter_data(
+    scatter %>% 
+      filter(continent %in% c("Europe", "Oceania")), 
+    aes(x = gdpPercap, y = lifeExp, group = continent, label = country, size = pop)
+  ) %>% 
+  tui_yAxis(title = "Life expectancy") %>% 
+  tui_xAxis(title = "GDP per capita") %>% 
+  tui_legend(visible = TRUE, align = "bottom")
+```
+
+
