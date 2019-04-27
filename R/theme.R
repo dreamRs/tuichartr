@@ -13,6 +13,7 @@
 tui_theme <- function(tui, ..., name = NULL) {
   if (is.null(name))
     name <- "tui-theme"
+  tui$x$options$theme <- NULL
   tui <- .widget_opt(
     widget = tui,
     name = "theme",

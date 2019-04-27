@@ -183,3 +183,45 @@ tuichart("bubble") %>%
 ```
 
 
+# Heatmap
+
+```{r}
+# Datas
+heatmap <- gapminder %>% 
+  filter(country %in% sample(country, 8))
+
+# Chart
+tuichart("heatmap") %>%
+  add_heat_data(
+    data = heatmap,
+    mapping = aes(x = year, y = country, value = gdpPercap)
+  ) %>% 
+  tui_chart(title = "GDP over time for 8 random countries")
+```
+
+
+Changing colors:
+
+```{r}
+# Datas
+heatmap <- gapminder %>% 
+  filter(country %in% sample(country, 8))
+
+# Chart
+tuichart("heatmap") %>%
+  add_heat_data(
+    data = heatmap,
+    mapping = aes(x = year, y = country, value = gdpPercap)
+  ) %>% 
+  tui_chart(title = "GDP over time for 8 random countries") %>% 
+  tui_theme(
+    series = list(
+      startColor = "#DEEBF7",
+      endColor = "#084594"
+    )
+  )
+```
+
+
+
+
