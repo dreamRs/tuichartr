@@ -28,7 +28,7 @@ tui_plot(tui, ...)
 \arguments{
 \item{tui}{A \code{tuichart} \code{htmlwidget} object.}
 
-\item{...}{Named parameters}
+\item{...}{Named parameters, see \url{http://nhn.github.io/tui.chart/latest/tui.chart}.}
 }
 \value{
 A \code{tuichart} \code{htmlwidget} object.

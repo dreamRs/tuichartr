@@ -2,7 +2,7 @@
 #' Set options for a chart
 #'
 #' @param tui A \code{tuichart} \code{htmlwidget} object.
-#' @param ... Named parameters
+#' @param ... Named parameters, see \url{http://nhn.github.io/tui.chart/latest/tui.chart}.
 #'
 #' @return A \code{tuichart} \code{htmlwidget} object.
 #' @export

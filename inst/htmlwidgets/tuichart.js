@@ -20,6 +20,9 @@ HTMLWidgets.widget({
         if (x.hasOwnProperty('data')) {
           data = x.data;
         }
+        if (x.hasOwnProperty('theme')) {
+          tuiChart.registerTheme(x.theme.name, x.theme.values);
+        }
 
         if (options.hasOwnProperty('chart') === false) {
           options.chart = {};

@@ -18,10 +18,17 @@ tuichart <- function(type = "bar", data = NULL, options = NULL, width = NULL, he
 
   type <- match.arg(type, choices = c("bar", "column", "line", "area", "scatter", "heatmap"))
 
+  theme <- getOption("tuichartr.theme")
+  if (!is.null(theme)) {
+    if (is.null(options))
+      options <- list()
+    options$theme <- list(theme$name)
+  }
   x <- dropNulls(list(
     type = paste0(type, "Chart"),
     data = data,
-    options = options
+    options = options,
+    theme = theme
   ))
 
   htmlwidgets::createWidget(
