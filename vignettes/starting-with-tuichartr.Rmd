@@ -223,5 +223,33 @@ tuichart("heatmap") %>%
 ```
 
 
+# Treemap
+
+```{r}
+# Datas
+treemap <- gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(pop > quantile(pop, 3/4))
+
+# Chart
+tuichart("treemap") %>%
+  add_tree_data(
+    data = treemap,
+    mapping = aes(level1 = continent, level2 = country, value = pop)
+  ) %>% 
+  tui_series(
+    showLabel = TRUE,
+    zoomable = FALSE,
+    useLeafLabel = TRUE
+  ) %>% 
+  tui_chart(title = "Most populated countries per continent")
+```
+
+
+
+
+
+
+
 
 
