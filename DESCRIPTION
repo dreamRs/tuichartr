@@ -4,7 +4,8 @@ Version: 0.0.0.9000
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
-  person("NHN FE Development Lab", role = c("cph"), comment = "tui-chart.js library"))
+  person("NHN FE Development Lab", role = c("cph"), comment = "tui-chart.js library"),
+  person("Gagan", "Bansal", role = c("cph"), comment = "geojson2svg library"))
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
@@ -18,9 +19,12 @@ Imports:
     shiny,
     ggplot2,
     rlang,
-    magrittr
+    magrittr,
+    geojsonio,
+    sf
 Suggests: 
     gapminder,
+    rnaturalearth,
     dplyr,
     tidyr,
     knitr,

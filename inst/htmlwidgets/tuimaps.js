@@ -1,0 +1,73 @@
+HTMLWidgets.widget({
+
+  name: 'tuimaps',
+
+  type: 'output',
+
+  factory: function(el, width, height) {
+
+    var tuiChart = tui.chart;
+    var widget, options = {}, data = {};
+
+    return {
+
+      renderValue: function(x) {
+
+        var geoptions = {
+          explode: false,
+          viewportExtent: {width: width, height: height},
+          //mapExtent: {left: -180, bottom: -90, right: 180, top: 90},
+          //mapExtent: {left: -1962011, bottom: -4139334, right: 5692196, top: 4488004},
+          mapExtent: x.bbox,
+          output: 'path'
+        };
+        var converter = geojson2svg(geoptions);
+        var svgStrings = converter.convert(x.geojson);
+
+        var mapData = [];
+        for (var i = 0; i < svgStrings.length; i++) {
+          mapData.push({
+            code: x.geodata.code[i],
+            name: x.geodata.name[i],
+            path: svgStrings[i],
+            labelCoordinate: {x: 0.6, y: 0.7}
+          });
+        }
+        console.log(mapData);
+
+        tuiChart.registerMap('customMap', mapData);
+
+        if (x.hasOwnProperty('options')) {
+          options = x.options;
+        }
+        if (x.hasOwnProperty('data')) {
+          data = x.data;
+        }
+        if (x.hasOwnProperty('theme')) {
+          tuiChart.registerTheme(x.theme.name, x.theme.values);
+        }
+
+        if (options.hasOwnProperty('chart') === false) {
+          options.chart = {};
+        }
+        options.chart.width = width;
+        options.chart.height = height;
+
+        console.log(options);
+        widget = tuiChart.mapChart(el, data, options);
+
+      },
+
+      getWidget: function(){
+        return widget;
+      },
+
+      resize: function(width, height) {
+
+        widget.resize({width: width, height: height});
+
+      }
+
+    };
+  }
+});
