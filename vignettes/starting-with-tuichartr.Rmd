@@ -247,7 +247,24 @@ tuichart("treemap") %>%
 
 
 
+# Boxplot
 
+```{r}
+tuichart("boxplot") %>% 
+  add_data(filter(gapminder, year == 2007), aes(x = continent, y = lifeExp)) %>% 
+  tui_chart(title = "Life expectancy distribution per continent") %>% 
+  tui_legend(visible = FALSE)
+```
+
+With grouping variable
+
+```{r}
+tuichart("boxplot") %>% 
+  add_data(filter(gapminder, year %in% c(1952, 2007)),
+           aes(x = continent, y = lifeExp, group = year)) %>% 
+  tui_chart(title = "Life expectancy distribution per continent") %>% 
+  tui_legend(visible = TRUE)
+```
 
 
 

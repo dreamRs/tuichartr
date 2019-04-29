@@ -16,7 +16,7 @@
 # @examples
 tuichart <- function(type = "bar", data = NULL, options = NULL, width = NULL, height = NULL, elementId = NULL) {
 
-  type <- match.arg(type, choices = c("bar", "column", "line", "area", "scatter", "bubble", "heatmap", "treemap"))
+  type <- match.arg(type, choices = c("bar", "column", "line", "area", "scatter", "bubble", "heatmap", "treemap", "boxplot"))
 
   theme <- getOption("tuichartr.theme")
   if (!is.null(theme)) {

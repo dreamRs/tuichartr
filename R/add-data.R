@@ -19,6 +19,8 @@ add_data <- function(tui, data, mapping) {
     tui <- add_scatter_data(tui, data, mapping)
   } else if (type %in% c("heatmapChart")) {
     tui <- add_heat_data(tui, data, mapping)
+  } else if (type %in% c("boxplotChart")) {
+    tui <- add_boxplot_data(tui, data, mapping)
   } else if (type %in% c("treemapChart")) {
     tui <- add_tree_data(tui, data, mapping)
   } else {
@@ -184,4 +186,76 @@ split_rec <- function(df, level = 1) {
     )
   }
 }
+
+
+#' @export
+#'
+#' @rdname add-data
+#' @importFrom stats median quantile
+add_boxplot_data <- function(tui, data, mapping) {
+  data <- as.data.frame(data)
+  mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
+  if (is.null(mapping$group)) {
+    splitdata <- split(x = mapdata$y, f = mapdata$x)
+    series <- lapply(
+      X = seq_along(splitdata),
+      FUN = function(i) {
+        x <- splitdata[[i]]
+        # list(
+        #   name = names(splitdata)[i],
+        #   data = list(unname(c(
+        #     min(x, na.rm = TRUE),
+        #     quantile(x = x, na.rm = TRUE, probs = 1/4),
+        #     median(x = x, na.rm = TRUE),
+        #     quantile(x = x, na.rm = TRUE, probs = 3/4),
+        #     max(x, na.rm = TRUE)
+        #   )))
+        # )
+        unname(c(
+          min(x, na.rm = TRUE),
+          quantile(x = x, na.rm = TRUE, probs = 1/4),
+          median(x = x, na.rm = TRUE),
+          quantile(x = x, na.rm = TRUE, probs = 3/4),
+          max(x, na.rm = TRUE)
+        ))
+      }
+    )
+    series <- list(list(name = rlang::as_label(mapping$y), data = series))
+  } else {
+    splitgroup <- split(x = as.data.frame(mapdata), f = mapdata$group)
+    series <- lapply(
+      X = seq_along(splitgroup),
+      FUN = function(i) {
+        splity <- split(x = splitgroup[[i]], f = splitgroup[[i]]$x)
+        list(
+          name = names(splitgroup)[i],
+          data = lapply(
+            X = seq_along(splity),
+            FUN = function(j) {
+              x <- splity[[j]]$y
+              unname(c(
+                min(x, na.rm = TRUE),
+                quantile(x = x, na.rm = TRUE, probs = 1/4),
+                median(x = x, na.rm = TRUE),
+                quantile(x = x, na.rm = TRUE, probs = 3/4),
+                max(x, na.rm = TRUE)
+              ))
+            }
+          )
+        )
+      }
+    )
+  }
+  categories <- as.character(unique(mapdata$x))
+  if (length(categories) == 1)
+    categories <- list(categories)
+  tui$x$data <- list(
+    categories = categories,
+    series = series
+  )
+  tui
+}
+
+
+
 
