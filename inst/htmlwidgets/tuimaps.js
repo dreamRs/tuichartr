@@ -8,32 +8,38 @@ HTMLWidgets.widget({
 
     var tuiChart = tui.chart;
     var widget, options = {}, data = {};
+    var bbox, geojson, converter, svgStrings, geoptions, mapData, geodata;
 
     return {
 
       renderValue: function(x) {
 
-        var geoptions = {
+        bbox = x.bbox, geojson = x.geojson, geodata = x.geodata;
+
+console.log(height);
+console.log(bbox);
+        geoptions = {
           explode: false,
-          viewportExtent: {width: width, height: height},
+          //viewportSize: {width: width, height: height},
           //mapExtent: {left: -180, bottom: -90, right: 180, top: 90},
           //mapExtent: {left: -1962011, bottom: -4139334, right: 5692196, top: 4488004},
-          mapExtent: x.bbox,
+          fitTo: 'height',
+          mapExtent: bbox,
           output: 'path'
         };
-        var converter = geojson2svg(geoptions);
-        var svgStrings = converter.convert(x.geojson);
+        converter = geojson2svg(geoptions);
+        svgStrings = converter.convert(geojson, geoptions);
 
-        var mapData = [];
+        mapData = [];
         for (var i = 0; i < svgStrings.length; i++) {
           mapData.push({
-            code: x.geodata.code[i],
-            name: x.geodata.name[i],
+            code: geodata.code[i],
+            name: geodata.name[i],
             path: svgStrings[i],
             labelCoordinate: {x: 0.6, y: 0.7}
           });
         }
-        console.log(mapData);
+        //console.log(mapData);
 
         tuiChart.registerMap('customMap', mapData);
 

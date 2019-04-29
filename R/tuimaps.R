@@ -25,8 +25,15 @@ tuimaps <- function(shape, code, name, data = NULL, options = NULL, width = NULL
       options <- list()
     options$theme <- list(theme$name)
   }
-  shape <- st_transform(shape, crs = 3857)
-  bbox <- as.list(st_bbox(shape))
+  shape <- st_transform(shape, crs = 3857) # 4326
+  bbox <- st_bbox(shape)
+  enlarge_bbox <- function(bbox, ratio = 0.1) {
+    diff13 <- diff(bbox[c(1, 3)])
+    diff24 <- diff(bbox[c(2, 4)])
+    bbox + c(-1, -1, 1, 1) * c(diff13 * ratio, diff24 * ratio, diff13 * ratio, diff24 * ratio)
+  }
+  # bbox <- enlarge_bbox(bbox)
+  bbox <- as.list(bbox)
   names(bbox) <- c("left", "bottom", "right", "top")
   geojson <- geojsonio::geojson_json(input = shape)
   x <- dropNulls(list(
