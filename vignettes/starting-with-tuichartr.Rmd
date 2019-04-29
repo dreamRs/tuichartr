@@ -146,7 +146,7 @@ scatter <- gapminder %>%
 
 # Chart
 tuichart("scatter") %>% 
-  add_scatter_data(scatter, aes(x = gdpPercap, y = lifeExp, label = country)) %>% 
+  add_data(scatter, aes(x = gdpPercap, y = lifeExp, label = country)) %>% 
   tui_chart(title = "Life expectancy X GDP per capita") %>% 
   tui_yAxis(title = "Life expectancy") %>% 
   tui_xAxis(title = "GDP per capita") %>% 
@@ -159,7 +159,7 @@ tuichart("scatter") %>%
 ```{r}
 # Chart
 tuichart("scatter") %>% 
-  add_scatter_data(scatter, aes(x = gdpPercap, y = lifeExp, group = continent, label = country)) %>% 
+  add_data(scatter, aes(x = gdpPercap, y = lifeExp, group = continent, label = country)) %>% 
   tui_chart(title = "Life expectancy X GDP per capita") %>% 
   tui_yAxis(title = "Life expectancy") %>% 
   tui_xAxis(title = "GDP per capita") %>% 
@@ -172,7 +172,7 @@ tuichart("scatter") %>%
 ```{r}
 # Chart
 tuichart("bubble") %>% 
-  add_scatter_data(
+  add_data(
     scatter %>% 
       filter(continent %in% c("Europe", "Oceania")), 
     aes(x = gdpPercap, y = lifeExp, group = continent, label = country, size = pop)
@@ -192,7 +192,7 @@ heatmap <- gapminder %>%
 
 # Chart
 tuichart("heatmap") %>%
-  add_heat_data(
+  add_data(
     data = heatmap,
     mapping = aes(x = year, y = country, value = gdpPercap)
   ) %>% 
@@ -209,7 +209,7 @@ heatmap <- gapminder %>%
 
 # Chart
 tuichart("heatmap") %>%
-  add_heat_data(
+  add_data(
     data = heatmap,
     mapping = aes(x = year, y = country, value = gdpPercap)
   ) %>% 
@@ -233,7 +233,7 @@ treemap <- gapminder %>%
 
 # Chart
 tuichart("treemap") %>%
-  add_tree_data(
+  add_data(
     data = treemap,
     mapping = aes(level1 = continent, level2 = country, value = pop)
   ) %>% 

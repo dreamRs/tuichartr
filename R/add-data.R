@@ -14,6 +14,23 @@
 #'
 # @examples
 add_data <- function(tui, data, mapping) {
+  type <- tui$x$type
+  if (type %in% c("scatterChart", "bubbleChart")) {
+    tui <- add_scatter_data(tui, data, mapping)
+  } else if (type %in% c("heatmapChart")) {
+    tui <- add_heat_data(tui, data, mapping)
+  } else if (type %in% c("treemapChart")) {
+    tui <- add_tree_data(tui, data, mapping)
+  } else {
+    tui <- add_default_data(tui, data, mapping)
+  }
+  tui
+}
+
+#' @export
+#'
+#' @rdname add-data
+add_default_data <- function(tui, data, mapping) {
   data <- as.data.frame(data)
   mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
   if (is.null(mapping$group)) {

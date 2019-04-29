@@ -3,12 +3,15 @@
 \name{add-data}
 \alias{add-data}
 \alias{add_data}
+\alias{add_default_data}
 \alias{add_scatter_data}
 \alias{add_heat_data}
 \alias{add_tree_data}
 \title{Add data to a \code{tuichart}}
 \usage{
 add_data(tui, data, mapping)
+
+add_default_data(tui, data, mapping)
 
 add_scatter_data(tui, data, mapping)
 
