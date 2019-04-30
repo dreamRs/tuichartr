@@ -41,7 +41,7 @@ add_default_data <- function(tui, data, mapping) {
       data = mapdata$y
     ))
   } else {
-    series <- split(x = mapdata$y, f = mapdata$group)
+    series <- split(x = mapdata$y, f = as.character(mapdata$group))
     series <- lapply(
       X = seq_along(series),
       FUN = function(i) {
@@ -50,7 +50,7 @@ add_default_data <- function(tui, data, mapping) {
     )
   }
   tui$x$data <- list(
-    categories = unique(mapdata$x),
+    categories = as.character(unique(mapdata$x)),
     series = series
   )
   tui

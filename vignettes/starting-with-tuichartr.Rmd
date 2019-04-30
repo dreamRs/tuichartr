@@ -1,5 +1,5 @@
 ---
-title: "starting-with-tuichartr"
+title: "Starting with tuichartr"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{starting-with-tuichartr}
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r setup}
-knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 library(tuichartr)
 library(gapminder)
 library(dplyr)
@@ -23,9 +23,9 @@ library(tidyr)
 ```
 
 
-# Bar / column charts
+## Bar / column charts
 
-## Simple columns
+### Simple columns
 
 ```{r}
 # Datas
@@ -42,7 +42,7 @@ tuichart("column") %>%
   tui_series(showLabel = TRUE)
 ```
 
-## Dodge columns
+### Dodge columns
 
 ```{r}
 # Datas
@@ -60,7 +60,7 @@ tuichart("column") %>%
 ```
 
 
-## Stack columns
+### Stack columns
 
 ```{r}
 # Datas
@@ -80,7 +80,7 @@ tuichart("column") %>%
 ```
 
 
-## Horizontal bars
+### Horizontal bars
 
 ```{r}
 # Datas
@@ -99,10 +99,10 @@ tuichart("bar") %>%
 
 
 
-# Lines
+## Lines
 
 
-## One serie
+### One serie
 
 ```{r}
 # Datas
@@ -118,7 +118,7 @@ tuichart("line") %>%
 ```
 
 
-## Several series
+### Several series
 
 ```{r}
 # Datas
@@ -135,9 +135,9 @@ tuichart("line") %>%
 ```
 
 
-# Scatter & bubbles
+## Scatter & bubbles
 
-## Basic scatter
+### Basic scatter
 
 ```{r}
 # Datas
@@ -154,7 +154,7 @@ tuichart("scatter") %>%
 ```
 
 
-## Group scatter
+### Group scatter
 
 ```{r}
 # Chart
@@ -167,7 +167,7 @@ tuichart("scatter") %>%
 ```
 
 
-## Bubbles
+### Bubbles
 
 ```{r}
 # Chart
@@ -183,7 +183,7 @@ tuichart("bubble") %>%
 ```
 
 
-# Heatmap
+## Heatmap
 
 ```{r}
 # Datas
@@ -223,7 +223,7 @@ tuichart("heatmap") %>%
 ```
 
 
-# Treemap
+## Treemap
 
 ```{r}
 # Datas
@@ -247,9 +247,10 @@ tuichart("treemap") %>%
 
 
 
-# Boxplot
+## Boxplot
 
 ```{r}
+# Chart
 tuichart("boxplot") %>% 
   add_data(filter(gapminder, year == 2007), aes(x = continent, y = lifeExp)) %>% 
   tui_chart(title = "Life expectancy distribution per continent") %>% 
@@ -259,6 +260,7 @@ tuichart("boxplot") %>%
 With grouping variable
 
 ```{r}
+# Chart
 tuichart("boxplot") %>% 
   add_data(filter(gapminder, year %in% c(1952, 2007)),
            aes(x = continent, y = lifeExp, group = year)) %>% 
@@ -267,6 +269,31 @@ tuichart("boxplot") %>%
 ```
 
 
+## Radial
+
+```{r}
+# Datas
+radial <- gapminder %>% 
+  filter(country == "Chile")
+
+# Chart
+tuichart("radial") %>%
+  add_data(
+    data = radial,
+    mapping = aes(x = year, y = gdpPercap)
+  )
+```
 
 
+```{r}
+# Datas
+radial <- gapminder %>% 
+  filter(country %in% c("Chile", "Argentina"))
 
+# Chart
+tuichart("radial") %>%
+  add_data(
+    data = radial,
+    mapping = aes(x = year, y = gdpPercap, group = country)
+  )
+```
