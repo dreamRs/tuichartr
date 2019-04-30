@@ -1,4 +1,4 @@
-#' Create a \code{tuichart} htmlwidget
+#' Create a \code{tuimap} htmlwidget
 #'
 #' @param shape An \code{sf} object.
 #' @param code Variable to use as unique identifier for the polygons.
@@ -17,7 +17,8 @@
 #' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget sizingPolicy
 #'
 # @examples
-tuimaps <- function(shape = NULL, code = NULL, label = NULL, data = NULL, options = NULL, width = NULL, height = NULL, elementId = NULL) {
+tuimap <- function(shape = NULL, code = NULL, label = NULL, data = NULL,
+                   options = NULL, width = NULL, height = NULL, elementId = NULL) {
 
   theme <- getOption("tuichartr.theme")
   if (!is.null(theme)) {
@@ -81,7 +82,7 @@ enlarge_bbox <- function(bbox, ratio = 0.1) {
   bbox + c(-1, -1, 1, 1) * c(diff13 * ratio, diff24 * ratio, diff13 * ratio, diff24 * ratio)
 }
 
-#' Shiny bindings for tuimaps
+#' Shiny bindings for tuimap
 #'
 #' Output and render functions for using tuimaps within Shiny
 #' applications and interactive Rmd documents.
@@ -95,16 +96,16 @@ enlarge_bbox <- function(bbox, ratio = 0.1) {
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
-#' @name tuimaps-shiny
+#' @name tuimap-shiny
 #'
 #' @export
-tuimapsOutput <- function(outputId, width = '100%', height = '400px'){
+tuimapOutput <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'tuimaps', width, height, package = 'tuichartr')
 }
 
-#' @rdname tuimaps-shiny
+#' @rdname tuimap-shiny
 #' @export
-renderTuimaps <- function(expr, env = parent.frame(), quoted = FALSE) {
+renderTuimap <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, tuimapsOutput, env, quoted = TRUE)
+  htmlwidgets::shinyRenderWidget(expr, tuimapOutput, env, quoted = TRUE)
 }

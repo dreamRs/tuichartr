@@ -36,7 +36,7 @@ italy <- ne_states("italy", returnclass = "sf")
 italy$random <- sample(1:100, nrow(italy), TRUE)
 
 # draw map
-tuimaps(width = 500, height = 500) %>% 
+tuimap(width = 500, height = 500) %>% 
   add_map_data(italy, aes(code = adm1_code, label = name, value = random)) %>% 
   tui_chart(title = "Italy map")
 ```
@@ -48,7 +48,7 @@ An other example, with some options:
 africa <- ne_countries(continent = "africa", returnclass = "sf")
 africa$random <- sample(1:100, nrow(africa), TRUE)
 
-tuimaps(width = 700, height = 900) %>% 
+tuimap(width = 700, height = 900) %>% 
   add_map_data(africa, aes(code = sov_a3, label = name, value = random)) %>% 
   tui_chart(
     title = "Africa map",
