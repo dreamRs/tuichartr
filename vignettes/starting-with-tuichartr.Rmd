@@ -297,3 +297,54 @@ tuichart("radial") %>%
     mapping = aes(x = year, y = gdpPercap, group = country)
   )
 ```
+
+
+
+## Pie / donut
+
+```{r}
+# Datas
+pie <- gapminder %>% 
+  filter(year == 2007) %>% 
+  count(continent)
+    
+# Chart
+tuichart("pie") %>%
+  add_data(
+    data = pie,
+    mapping = aes(x = continent, y = n)
+  ) %>% 
+  tui_series(
+    showLegend = TRUE,
+    showLabel = TRUE,
+    labelAlign = "center"
+  ) %>% 
+  tui_legend(visible = FALSE) %>% 
+  tui_theme(
+    series = list(label = list(color = "#FFF"))
+  )
+```
+
+Half donut:
+
+```{r}
+# Chart
+tuichart("pie") %>%
+  add_data(
+    data = pie,
+    mapping = aes(x = continent, y = n)
+  ) %>% 
+  tui_series(
+    startAngle = -90,
+    endAngle = 90,
+    radiusRange = c("60%", "100%"),
+    showLegend = TRUE,
+    showLabel = TRUE,
+    labelAlign = "outer"
+  ) %>% 
+  tui_legend(visible = FALSE) %>% 
+  tui_theme(
+    series = list(label = list(color = "#FFF"))
+  )
+```
+

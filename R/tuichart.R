@@ -20,7 +20,7 @@ tuichart <- function(type = "bar", data = NULL, options = NULL, width = NULL, he
     arg = type,
     choices = c("bar", "column", "line", "area", "scatter",
                 "bubble", "heatmap", "treemap", "boxplot",
-                "radial")
+                "radial", "pie")
   )
 
   theme <- getOption("tuichartr.theme")

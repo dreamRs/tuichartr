@@ -19,6 +19,8 @@ add_data <- function(tui, data, mapping) {
     tui <- add_scatter_data(tui, data, mapping)
   } else if (type %in% c("heatmapChart")) {
     tui <- add_heat_data(tui, data, mapping)
+  } else if (type %in% c("pieChart")) {
+    tui <- add_pie_data(tui, data, mapping)
   } else if (type %in% c("boxplotChart")) {
     tui <- add_boxplot_data(tui, data, mapping)
   } else if (type %in% c("treemapChart")) {
@@ -51,6 +53,26 @@ add_default_data <- function(tui, data, mapping) {
   }
   tui$x$data <- list(
     categories = as.character(unique(mapdata$x)),
+    series = series
+  )
+  tui
+}
+
+#' @export
+#'
+#' @rdname add-data
+add_pie_data <- function(tui, data, mapping) {
+  data <- as.data.frame(data)
+  mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
+  series <- mapply(
+    FUN = function(name, data) list(name = name, data = data),
+    name = mapdata$x,
+    data = mapdata$y,
+    SIMPLIFY = FALSE,
+    USE.NAMES = FALSE
+  )
+  tui$x$data <- list(
+    categories = list(rlang::as_label(mapping$x)),
     series = series
   )
   tui
