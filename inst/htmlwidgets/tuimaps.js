@@ -20,7 +20,7 @@ console.log(height);
 console.log(bbox);
         geoptions = {
           explode: false,
-          //viewportSize: {width: width, height: height},
+          viewportSize: {width: width, height: height},
           //mapExtent: {left: -180, bottom: -90, right: 180, top: 90},
           //mapExtent: {left: -1962011, bottom: -4139334, right: 5692196, top: 4488004},
           fitTo: 'height',

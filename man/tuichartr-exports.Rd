@@ -4,6 +4,7 @@
 \alias{tuichartr-exports}
 \alias{\%>\%}
 \alias{aes}
+\alias{JS}
 \title{tuichartr exported operators and S3 methods}
 \description{
 The following functions are imported and then re-exported

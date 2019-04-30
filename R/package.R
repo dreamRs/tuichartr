@@ -30,3 +30,9 @@ NULL
 #' @export
 #' @rdname tuichartr-exports
 NULL
+
+#' @importFrom htmlwidgets JS
+#' @name JS
+#' @export
+#' @rdname tuichartr-exports
+NULL
