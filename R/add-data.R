@@ -281,3 +281,57 @@ add_boxplot_data <- function(tui, data, mapping) {
 
 
 
+#' @export
+#'
+#' @rdname add-data
+#' @importFrom sf st_transform st_bbox
+#' @importFrom geojsonio geojson_json
+add_map_data <- function(tui, data, mapping) {
+  if (!inherits(tui, "tuimaps"))
+    stop("'add_map_data' must be used with tuimaps()", call. = FALSE)
+  if (!inherits(data, "sf"))
+    stop("'data' must be an 'sf' object", call. = FALSE)
+  mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
+  data <- st_transform(data, crs = 3857) # 4326
+  bbox <- st_bbox(data)
+  bbox <- as.list(bbox)
+  names(bbox) <- c("left", "bottom", "right", "top")
+  tui$x$bbox <- bbox
+  tui$x$geojson <- geojsonio::geojson_json(input = data)
+  tui$x$geodata <- list(
+    code = mapdata$code,
+    name = mapdata$label
+  )
+  tui$x$data <- list(
+    series = mapply(
+      FUN = function(code, value) {
+        list(code = code, data = value)
+      },
+      code =  mapdata$code,
+      value = mapdata$value,
+      SIMPLIFY = FALSE,
+      USE.NAMES = FALSE
+    )
+  )
+  tui$x$options$map <- "customMap"
+  tui
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

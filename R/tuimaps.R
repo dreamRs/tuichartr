@@ -2,7 +2,7 @@
 #'
 #' @param shape An \code{sf} object.
 #' @param code Variable to use as unique identifier for the polygons.
-#' @param name Varaible to use as label for the polygons.
+#' @param label Variable to use as label for the polygons.
 #' @param data A \code{list} of parameters for the data used in the chart.
 #' @param options A \code{list} of options for the chart.
 #' @param width A numeric input in pixels.
@@ -17,7 +17,7 @@
 #' @importFrom htmlwidgets createWidget shinyWidgetOutput shinyRenderWidget sizingPolicy
 #'
 # @examples
-tuimaps <- function(shape, code, name, data = NULL, options = NULL, width = NULL, height = NULL, elementId = NULL) {
+tuimaps <- function(shape = NULL, code = NULL, label = NULL, data = NULL, options = NULL, width = NULL, height = NULL, elementId = NULL) {
 
   theme <- getOption("tuichartr.theme")
   if (!is.null(theme)) {
@@ -25,22 +25,26 @@ tuimaps <- function(shape, code, name, data = NULL, options = NULL, width = NULL
       options <- list()
     options$theme <- list(theme$name)
   }
-  shape <- st_transform(shape, crs = 3857) # 4326
-  bbox <- st_bbox(shape)
-  enlarge_bbox <- function(bbox, ratio = 0.1) {
-    diff13 <- diff(bbox[c(1, 3)])
-    diff24 <- diff(bbox[c(2, 4)])
-    bbox + c(-1, -1, 1, 1) * c(diff13 * ratio, diff24 * ratio, diff13 * ratio, diff24 * ratio)
-  }
-  # bbox <- enlarge_bbox(bbox)
-  bbox <- as.list(bbox)
-  names(bbox) <- c("left", "bottom", "right", "top")
-  geojson <- geojsonio::geojson_json(input = shape)
-  x <- dropNulls(list(
-    geodata = list(
+  if (!is.null(shape)) {
+    shape <- st_transform(shape, crs = 3857) # 4326
+    bbox <- st_bbox(shape)
+    bbox <- as.list(bbox)
+    names(bbox) <- c("left", "bottom", "right", "top")
+    geojson <- geojsonio::geojson_json(input = shape)
+    geodata <- list(
       code = as.character(shape[[code]]),
-      name = as.character(shape[[name]])
-    ),
+      name = as.character(shape[[label]])
+    )
+  } else {
+    geojson <- NULL
+    bbox <- NULL
+    geodata <- list(
+      code = NULL,
+      name = NULL
+    )
+  }
+  x <- dropNulls(list(
+    geodata = geodata,
     bbox = bbox,
     geojson = geojson,
     data = data,
@@ -69,6 +73,12 @@ tuimaps <- function(shape, code, name, data = NULL, options = NULL, width = NULL
       padding = 20
     )
   )
+}
+
+enlarge_bbox <- function(bbox, ratio = 0.1) {
+  diff13 <- diff(bbox[c(1, 3)])
+  diff24 <- diff(bbox[c(2, 4)])
+  bbox + c(-1, -1, 1, 1) * c(diff13 * ratio, diff24 * ratio, diff13 * ratio, diff24 * ratio)
 }
 
 #' Shiny bindings for tuimaps

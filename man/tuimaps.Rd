@@ -4,15 +4,15 @@
 \alias{tuimaps}
 \title{Create a \code{tuichart} htmlwidget}
 \usage{
-tuimaps(shape, code, name, data = NULL, options = NULL, width = NULL,
-  height = NULL, elementId = NULL)
+tuimaps(shape = NULL, code = NULL, label = NULL, data = NULL,
+  options = NULL, width = NULL, height = NULL, elementId = NULL)
 }
 \arguments{
 \item{shape}{An \code{sf} object.}
 
 \item{code}{Variable to use as unique identifier for the polygons.}
 
-\item{name}{Varaible to use as label for the polygons.}
+\item{label}{Variable to use as label for the polygons.}
 
 \item{data}{A \code{list} of parameters for the data used in the chart.}
 

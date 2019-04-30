@@ -9,6 +9,7 @@
 \alias{add_heat_data}
 \alias{add_tree_data}
 \alias{add_boxplot_data}
+\alias{add_map_data}
 \title{Add data to a \code{tuichart}}
 \usage{
 add_data(tui, data, mapping)
@@ -24,6 +25,8 @@ add_heat_data(tui, data, mapping)
 add_tree_data(tui, data, mapping)
 
 add_boxplot_data(tui, data, mapping)
+
+add_map_data(tui, data, mapping)
 }
 \arguments{
 \item{tui}{A \code{tuichart} \code{htmlwidget} object.}
