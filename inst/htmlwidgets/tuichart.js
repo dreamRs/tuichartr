@@ -30,6 +30,7 @@ HTMLWidgets.widget({
         options.chart.width = width;
         options.chart.height = height;
 
+        el.innerHTML = null;
         widget = chartType(el, data, options);
 
       },
@@ -63,6 +64,26 @@ function get_widget(id){
   }
 
   return(widgetObj);
+}
+
+
+if (HTMLWidgets.shinyMode) {
+  Shiny.addCustomMessageHandler('proxy-tui-chart-addData',
+    function(obj) {
+      var chart = get_widget(obj.id);
+      if (typeof chart != 'undefined') {
+        console.log(obj.data.values);
+        chart.addData(obj.data.categories, obj.data.values);
+      }
+  });
+  Shiny.addCustomMessageHandler('proxy-tui-chart-setData',
+    function(obj) {
+      var chart = get_widget(obj.id);
+      if (typeof chart != 'undefined') {
+        console.log(obj.data.values);
+        chart.setData({categories: obj.data.categories, series: obj.data.values});
+      }
+  });
 }
 
 

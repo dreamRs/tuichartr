@@ -1,17 +1,18 @@
 Package: tuichartr
-Title: What the Package Does (One Line, Title Case)
+Title: Create Interactive Visualisations with the JavaScript 'tui-chart' Library
 Version: 0.0.0.9000
 Authors@R: c(
   person("Victor", "Perrier", email = "victor.perrier@dreamrs.fr", role = c("aut", "cre")),
   person("Fanny", "Meyer", email = "fanny.meyer@dreamrs.fr", role = c("aut")),
   person("NHN FE Development Lab", role = c("cph"), comment = "tui-chart.js library"),
   person("Gagan", "Bansal", role = c("cph"), comment = "geojson2svg library"))
-Description: What the package does (one paragraph).
+Description: Htmlwidget for creating interactive charts and maps. Various type
+  of charts are implemented: bar, column, line, area, boxplot, scatter, heatmap, treemap, radar, pie.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-URL: https://github.com/dreamRs/tuicalendr
-BugReports: https://github.com/dreamRs/tuicalendr/issues
+URL: https://github.com/dreamRs/tuichartr
+BugReports: https://github.com/dreamRs/tuichartr/issues
 RoxygenNote: 6.1.1
 Imports: 
     htmlwidgets,

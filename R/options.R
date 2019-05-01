@@ -107,3 +107,19 @@ tui_plot <- function(tui, ...) {
   )
 }
 
+
+#' @export
+#'
+#' @rdname tui-options
+#'
+# @examples
+tui_chartExportMenu <- function(tui, ...) {
+  .widget_opt(
+    widget = tui,
+    name = "chartExportMenu",
+    ...
+  )
+}
+
+
+

@@ -9,6 +9,7 @@
 \alias{tui_series}
 \alias{tui_tooltip}
 \alias{tui_plot}
+\alias{tui_chartExportMenu}
 \title{Set options for a chart}
 \usage{
 tui_legend(tui, ...)
@@ -24,6 +25,8 @@ tui_series(tui, ...)
 tui_tooltip(tui, ...)
 
 tui_plot(tui, ...)
+
+tui_chartExportMenu(tui, ...)
 }
 \arguments{
 \item{tui}{A \code{tuichart} \code{htmlwidget} object.}
