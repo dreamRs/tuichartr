@@ -19,6 +19,8 @@ add_data <- function(tui, data, mapping) {
     tui <- add_scatter_data(tui, data, mapping)
   } else if (type %in% c("heatmapChart")) {
     tui <- add_heat_data(tui, data, mapping)
+  # } else if (type %in% c("lineChart", "areaChart")) {
+  #   tui <- add_line_data(tui, data, mapping)
   } else if (type %in% c("pieChart")) {
     tui <- add_pie_data(tui, data, mapping)
   } else if (type %in% c("boxplotChart")) {
@@ -73,6 +75,52 @@ add_pie_data <- function(tui, data, mapping) {
   )
   tui$x$data <- list(
     categories = list(rlang::as_label(mapping$x)),
+    series = series
+  )
+  tui
+}
+
+#' @export
+#'
+#' @rdname add-data
+add_line_data <- function(tui, data, mapping) {
+  data <- as.data.frame(data)
+  mapdata <- lapply(mapping, rlang::eval_tidy, data = data)
+  if (is.null(mapping$group)) {
+    series <- list(list(
+      name = rlang::as_label(mapping$y),
+      data = mapply(
+        FUN = function(x, y) {
+          list(x = format(x), y = y)
+        },
+        x = mapdata$x,
+        y = mapdata$y,
+        SIMPLIFY = FALSE
+      )
+    ))
+  } else {
+    mapdata$group <- as.character(mapdata$group)
+    mapdata <- as.data.frame(mapdata, stringsAsFactors = FALSE)
+    series <- split(x = mapdata, f = mapdata$group)
+    series <- lapply(
+      X = seq_along(series),
+      FUN = function(i) {
+        data <- series[[i]]
+        list(
+          name = names(series)[i],
+          data = mapply(
+            FUN = function(x, y) {
+              list(x = x, y = y)
+            },
+            x = data$x,
+            y = data$y,
+            SIMPLIFY = FALSE
+          )
+        )
+      }
+    )
+  }
+  tui$x$data <- list(
     series = series
   )
   tui

@@ -33,6 +33,13 @@ HTMLWidgets.widget({
         el.innerHTML = null;
         widget = chartType(el, data, options);
 
+        widget.on('selectLegend', function(info) {
+            console.log(info);
+        });
+        widget.on('selectSeries', function(info) {
+            console.log(info);
+        });
+
       },
 
       getWidget: function(){

@@ -5,6 +5,7 @@
 \alias{add_data}
 \alias{add_default_data}
 \alias{add_pie_data}
+\alias{add_line_data}
 \alias{add_scatter_data}
 \alias{add_heat_data}
 \alias{add_tree_data}
@@ -17,6 +18,8 @@ add_data(tui, data, mapping)
 add_default_data(tui, data, mapping)
 
 add_pie_data(tui, data, mapping)
+
+add_line_data(tui, data, mapping)
 
 add_scatter_data(tui, data, mapping)
 
