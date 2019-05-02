@@ -14,8 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```{r setup, message=FALSE, warning=FALSE}
 library(tuichartr)
 library(gapminder)
 library(dplyr)

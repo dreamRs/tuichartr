@@ -1,0 +1,69 @@
+---
+title: "Timeseries"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{timeseries}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tuichartr)
+library(ggplot2)
+```
+
+
+
+## One serie
+
+Use `type = "datetime"` in `tui_xAxis` to use time on x-axis. You can set tick labels format with argument `dateFormat` :
+
+
+```{r}
+tuichart("line") %>% 
+  add_data(tail(economics, 30), aes(x = date, y = pce)) %>% 
+  tui_chart(title = "Personal consumption expenditures, in billions of dollars") %>% 
+  tui_xAxis(tickInterval = "auto", type = "datetime", dateFormat = "YYYY-MM") %>% 
+  tui_legend(visible = FALSE)
+```
+
+
+You can create a spline chart by setting `spline = TRUE` in `tui_series` :
+
+```{r}
+tuichart("line") %>% 
+  add_data(tail(economics, 30), aes(x = date, y = pce)) %>% 
+  tui_chart(title = "Personal consumption expenditures, in billions of dollars") %>% 
+  tui_xAxis(tickInterval = "auto", type = "datetime", dateFormat = "YYYY-MM") %>% 
+  tui_legend(visible = FALSE) %>% 
+  tui_series(spline = TRUE)
+```
+
+
+
+
+## Multiple series
+
+```{r}
+tuichart("line") %>% 
+  add_data(economics_long, aes(x = date, y = value01, group = variable)) %>% 
+  tui_chart(title = "Economics dataset from ggplot2") %>% 
+  tui_xAxis(tickInterval = "auto", type = "datetime", dateFormat = "YYYY-MM") %>% 
+  tui_series(pointWidth = 1, zoomable = TRUE) %>% 
+  tui_plot(hideLine = TRUE) %>% 
+  tui_tooltip(grouped = TRUE)
+```
+
+
+
+
+
+
+
