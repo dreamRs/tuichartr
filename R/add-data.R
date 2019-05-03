@@ -12,6 +12,15 @@
 #'
 #' @importFrom rlang as_label eval_tidy
 #'
+#' @details Aesthetics vary according to the type of graph:
+#'  \itemize{
+#'   \item \strong{bar, column, line, area, radial, boxplot} : x, y, and group (optional).
+#'   \item \strong{pie} : x, y.
+#'   \item \strong{heatmap} : x, y, value.
+#'   \item \strong{treemap} : leval1, (level2, level3, ...), value
+#'   \item \strong{scatter, bubble} : x, y, group (optional), label (optional), size (bubble).
+#'  }
+#'
 # @examples
 add_data <- function(tui, data, mapping) {
   type <- tui$x$type
