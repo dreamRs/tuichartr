@@ -26,3 +26,51 @@ A \code{tuichart} \code{htmlwidget} object.
 \description{
 Create a \code{tuichart} htmlwidget
 }
+\examples{
+
+library(gapminder)
+library(dplyr)
+
+n_countries <- gapminder_unfiltered \%>\%
+  filter(year == 2007) \%>\%
+  count(continent)
+
+# a barchart
+tuichart("column") \%>\%
+  add_data(n_countries, aes(x = continent, y = n)) \%>\%
+  tui_series(showLabel = TRUE)
+
+# a treemap
+tuichart("treemap") \%>\%
+  add_data(n_countries, aes(level1 = continent, value = n)) \%>\%
+  tui_series(showLabel = TRUE)
+
+# a pie chart
+tuichart("pie") \%>\%
+  add_data(n_countries, aes(x = continent, y = n)) \%>\%
+  tui_series(showLabel = TRUE)
+
+
+
+gdp_italy <- gapminder_unfiltered \%>\%
+  filter(country == "Italy")
+
+# line chart
+tuichart("line") \%>\%
+  add_data(gdp_italy, aes(x = year, y = gdpPercap)) \%>\%
+  tui_chart(
+    title = "A chart",
+    format = "0.00"
+  ) \%>\%
+  tui_series(
+    zoomable = TRUE
+  ) \%>\%
+  tui_plot(
+    hideLine = TRUE
+  ) \%>\%
+  tui_xAxis(
+    tickInterval = "auto",
+    title = "X axis title"
+  )
+
+}

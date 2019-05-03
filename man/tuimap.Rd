@@ -30,3 +30,18 @@ A \code{tuichart} \code{htmlwidget} object.
 \description{
 Create a \code{tuimap} htmlwidget
 }
+\examples{
+
+library(rnaturalearth)
+
+# Retrieve polygons
+sa <- ne_countries(continent = "south america", returnclass = "sf")
+# add a random numeric variable
+sa$random <- sample(1:100, nrow(sa), TRUE)
+
+# draw map
+tuimap() \%>\%
+  add_map_data(sa, aes(code = adm0_a3, label = name, value = random)) \%>\%
+  tui_chart(title = "A map")
+
+}
