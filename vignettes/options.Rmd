@@ -1,0 +1,131 @@
+---
+title: "Options"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{options}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tuichartr)
+library(gapminder)
+library(dplyr)
+library(tidyr)
+
+# Datas
+dodge_cols <- gapminder_unfiltered %>% 
+  filter(year %in% c(1950, 2007)) %>% 
+  count(continent, year) %>% 
+  complete(continent, year)
+
+simple_cols <- gapminder_unfiltered %>% 
+  filter(year == 2007) %>% 
+  count(continent)
+
+line_one <- gapminder %>% 
+  filter(country == "Italy")
+
+line_two <- gapminder_unfiltered %>% 
+  filter(country == "Italy")
+
+# Charts
+dodge_cols <- tuichart("column") %>% 
+  add_data(dodge_cols, aes(x = continent, y = n, group = year))
+
+simple_cols <- tuichart("column") %>% 
+  add_data(simple_cols, aes(x = continent, y = n))
+
+line_one <- tuichart("line") %>% 
+  add_data(line_one, aes(x = year, y = gdpPercap))
+
+line_two <- tuichart("line") %>% 
+  add_data(line_two, aes(x = year, y = gdpPercap))
+```
+
+
+## Chart
+
+Set title :
+
+```{r}
+dodge_cols %>% 
+  tui_chart(title = "Chart title")
+```
+
+
+Format value:
+
+
+```{r}
+dodge_cols %>% 
+  tui_chart(format = "0.00") # force 2 decimal
+```
+
+Or use `"1,000"` for use a comma as thousand separator.
+
+
+
+## Legend
+
+```{r}
+dodge_cols %>% 
+  tui_legend(
+    visible = TRUE, # hide or show
+    align = "bottom", # or top, left, right
+    showCheckbox = FALSE # hide or show checkbox to select serie
+  )
+```
+
+
+## Series
+
+
+```{r}
+simple_cols %>% 
+  tui_series(
+    showLabel = TRUE, # show bars value
+    barWidth = 100
+  )
+
+dodge_cols %>% 
+  tui_series(
+    stackType = "percent"
+  )
+```
+
+There are specific options depending on the type of graph. Example for lines:
+
+```{r}
+line_one %>% 
+  tui_series(
+    showDot = TRUE, # whether show dot or not
+    spline = TRUE, # whether spline chart or not
+    zoomable = TRUE # whether can zoom by mouse drag or not
+  )
+```
+
+
+## Axis
+
+
+```{r}
+line_two %>% 
+  tui_xAxis(
+    tickInterval = "auto", # automatic labels
+    title = "X axis title" # title
+  ) %>% 
+  tui_yAxis(
+    max = 50000 # y max value
+  )
+```
+
+
+
