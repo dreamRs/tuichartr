@@ -243,10 +243,16 @@ split_rec <- function(df, level = 1) {
     stop("[tuichart - treemap] Incorrect type of data, groups levels are probably not unique", call. = FALSE)
   }
   if (all(table(df[[paste0("level", level)]]) == 1)) {
-    list(
-      label = unique(df[[paste0("level", level - 1)]]),
-      children = make_child(df[[paste0("level", level)]], values = df$value)
-    )
+    label <- unique(df[[paste0("level", level - 1)]])
+    if (is.null(label)) {
+      make_child(df[[paste0("level", level)]], values = df$value)
+    } else {
+      list(
+        label = label,
+        children = make_child(df[[paste0("level", level)]], values = df$value)
+      )
+    }
+
   } else {
     dfsplit <- split(x = df, f = df[[paste0("level", level)]])
     lapply(
