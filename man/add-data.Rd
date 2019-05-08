@@ -42,7 +42,8 @@ add_map_data(tui, data, mapping)
 A \code{tuichart} \code{htmlwidget} object.
 }
 \description{
-Add data to a \code{tuichart}
+Method to add data is specific to chart's type,
+ normally \code{add_data} should be enough.
 }
 \details{
 Aesthetics vary according to the type of graph:
@@ -53,4 +54,38 @@ Aesthetics vary according to the type of graph:
   \item \strong{treemap} : leval1, (level2, level3, ...), value
   \item \strong{scatter, bubble} : x, y, group (optional), label (optional), size (bubble).
  }
+}
+\examples{
+# line chart
+sinus <- data.frame(
+  x = seq_len(20),
+  y = sin(seq(-pi, pi, length.out = 20))
+)
+tuichart("line") \%>\%
+  add_data(sinus, aes(x, y))
+
+
+# bar chart
+tuichart("bar") \%>\%
+  add_data(table(cyl = mtcars$cyl), aes(cyl, Freq))
+
+#â™¦ with grouping variable
+tuichart("bar") \%>\%
+  add_data(table(cyl = mtcars$cyl, am = mtcars$am),
+           aes(cyl, Freq, group = am))
+
+
+# or pie chart
+tuichart("pie") \%>\%
+  add_data(table(cyl = mtcars$cyl), aes(cyl, Freq))
+
+
+# treemap has different aesthetics
+tuichart("treemap") \%>\%
+  add_data(table(cyl = mtcars$cyl), aes(level1 = cyl, value = Freq))
+
+
+# scatter plot
+tuichart("scatter") \%>\%
+  add_data(iris, aes(Sepal.Length, Sepal.Width, group = Species))
 }

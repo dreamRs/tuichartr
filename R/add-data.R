@@ -1,5 +1,8 @@
 
-#' Add data to a \code{tuichart}
+#' @title Add data to a \code{tuichart}
+#'
+#' @description Method to add data is specific to chart's type,
+#'  normally \code{add_data} should be enough.
 #'
 #' @param tui A \code{tuichart} \code{htmlwidget} object.
 #' @param data A \code{data.frame}, or an object coercible to \code{data.frame}.
@@ -21,7 +24,39 @@
 #'   \item \strong{scatter, bubble} : x, y, group (optional), label (optional), size (bubble).
 #'  }
 #'
-# @examples
+#' @examples
+#' # line chart
+#' sinus <- data.frame(
+#'   x = seq_len(20),
+#'   y = sin(seq(-pi, pi, length.out = 20))
+#' )
+#' tuichart("line") %>%
+#'   add_data(sinus, aes(x, y))
+#'
+#'
+#' # bar chart
+#' tuichart("bar") %>%
+#'   add_data(table(cyl = mtcars$cyl), aes(cyl, Freq))
+#'
+#' #♦ with grouping variable
+#' tuichart("bar") %>%
+#'   add_data(table(cyl = mtcars$cyl, am = mtcars$am),
+#'            aes(cyl, Freq, group = am))
+#'
+#'
+#' # or pie chart
+#' tuichart("pie") %>%
+#'   add_data(table(cyl = mtcars$cyl), aes(cyl, Freq))
+#'
+#'
+#' # treemap has different aesthetics
+#' tuichart("treemap") %>%
+#'   add_data(table(cyl = mtcars$cyl), aes(level1 = cyl, value = Freq))
+#'
+#'
+#' # scatter plot
+#' tuichart("scatter") %>%
+#'   add_data(iris, aes(Sepal.Length, Sepal.Width, group = Species))
 add_data <- function(tui, data, mapping) {
   type <- tui$x$type
   if (type %in% c("scatterChart", "bubbleChart")) {
