@@ -39,3 +39,53 @@ A \code{tuichart} \code{htmlwidget} object.
 \description{
 Set options for a chart
 }
+\examples{
+# See the vignette for examples
+vignette("options", package = "tuichartr")
+
+
+library(tuichartr)
+
+# a classic scatter plot
+my_scatter <- tuichart("scatter") \%>\%
+  add_data(iris, aes(Sepal.Length, Sepal.Width, group = Species))
+
+
+# add a title
+my_scatter \%>\%
+  tui_chart(title = "Classic Iris example")
+
+# format numeric values in all chart
+# (x-axis, y-axis, tooltip)
+my_scatter \%>\%
+  tui_chart(format = "0.00")
+
+
+# hide legend
+my_scatter \%>\%
+  tui_legend(visible = FALSE)
+
+# or change position and hide
+# checkbox to show/hide group
+my_scatter \%>\%
+  tui_legend(
+    align = "bottom", # or top, left, right
+    showCheckbox = FALSE
+  )
+
+
+# hide the export menu
+my_scatter \%>\%
+  tui_chartExportMenu(visible = FALSE)
+
+
+# some options for axis
+my_scatter \%>\%
+  tui_xAxis(
+    tickInterval = "auto",
+    title = "X axis title" # title
+  ) \%>\%
+  tui_yAxis(
+    max = 10 # y max value
+  )
+}
