@@ -112,6 +112,59 @@ enlarge_bbox <- function(bbox, ratio = 0.1) {
 #' @name tuimap-shiny
 #'
 #' @export
+#'
+#' @examples
+#' if (interactive()) {
+#'
+#'   library(shiny)
+#'   library(rnaturalearth)
+#'   library(dplyr)
+#'   library(tuichartr)
+#'
+#'   # Retrieve world map
+#'   world <- ne_countries(returnclass = "sf") %>%
+#'     filter(continent != "Antarctica")
+#'
+#'   ui <- fluidPage(
+#'     tags$h2("Include tuimap in Shiny"),
+#'     fluidRow(
+#'       column(
+#'         width = 3,
+#'         actionButton(
+#'           inputId = "refresh",
+#'           label = "Refresh data"
+#'         )
+#'       ),
+#'       column(
+#'         width = 9,
+#'         tuimapOutput(outputId = "my_map")
+#'       )
+#'     )
+#'   )
+#'
+#'   server <- function(input, output, session) {
+#'
+#'     output$my_map <- renderTuimap({
+#'
+#'       input$refresh
+#'
+#'       # add a random numeric variable
+#'       world$random <- sample(1:100, nrow(world), TRUE)
+#'
+#'       # draw map
+#'       tuimap() %>%
+#'         add_map_data(
+#'           data = world,
+#'           mapping = aes(code = adm0_a3, label = name, value = random)
+#'         ) %>%
+#'         tui_chart(title = "World map (minus Antarctica)")
+#'
+#'     })
+#'
+#'   }
+#'
+#'   shinyApp(ui, server)
+#' }
 tuimapOutput <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'tuimaps', width, height, package = 'tuichartr')
 }

@@ -28,3 +28,51 @@ is useful if you want to save an expression in a variable.}
 Output and render functions for using tuichart within Shiny
 applications and interactive Rmd documents.
 }
+\examples{
+if (interactive()) {
+
+  library(shiny)
+  library(dplyr)
+  library(ggplot2)
+  library(tuichartr)
+
+  ui <- fluidPage(
+    tags$h2("Include tuichart in Shiny"),
+    fluidRow(
+      column(
+        width = 3,
+        checkboxGroupInput(
+          inputId = "year",
+          label = "Year:",
+          choices = c(1999, 2008),
+          selected = c(1999, 2008)
+        )
+      ),
+      column(
+        width = 9,
+        tuichartOutput(outputId = "my_chart")
+      )
+    )
+  )
+
+  server <- function(input, output, session) {
+
+    output$my_chart <- renderTuichart({
+
+      data <- filter(mpg, year \%in\% input$year) \%>\%
+        count(manufacturer)
+
+      tuichart("bar") \%>\%
+        add_data(data, aes(x = manufacturer, y = n)) \%>\%
+        tui_chart(title = "My cool chart") \%>\%
+        tui_xAxis(title = "Count") \%>\%
+        tui_legend(visible = FALSE) \%>\%
+        tui_series(showLabel = TRUE)
+    })
+
+
+  }
+
+  shinyApp(ui, server)
+}
+}

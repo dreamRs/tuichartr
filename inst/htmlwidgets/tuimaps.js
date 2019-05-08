@@ -16,8 +16,8 @@ HTMLWidgets.widget({
 
         bbox = x.bbox, geojson = x.geojson, geodata = x.geodata;
 
-console.log(height);
-console.log(bbox);
+        //console.log(height);
+        //console.log(bbox);
         geoptions = {
           explode: false,
           viewportSize: {width: width, height: height},
@@ -59,7 +59,8 @@ console.log(bbox);
         options.chart.width = width;
         options.chart.height = height;
 
-        console.log(options);
+        // console.log(options);
+        el.innerHTML = null;
         widget = tuiChart.mapChart(el, data, options);
 
       },
