@@ -89,7 +89,13 @@
       <a href="../articles/maps.html">Maps</a>
     </li>
     <li>
+      <a href="../articles/options.html">Options</a>
+    </li>
+    <li>
       <a href="../articles/starting-with-tuichartr.html">Starting with tuichartr</a>
+    </li>
+    <li>
+      <a href="../articles/timeseries.html">Timeseries</a>
     </li>
   </ul>
 </li>
@@ -97,7 +103,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/dreamRs/tuicalendr">
+  <a href="https://github.com/dreamRs/tuichartr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -115,7 +121,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Set options for a chart</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dreamRs/tuicalendr/blob/master/R/options.R'><code>R/options.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/dreamRs/tuichartr/blob/master/R/options.R'><code>R/options.R</code></a></small>
     <div class="hidden name"><code>tui-options.Rd</code></div>
     </div>
 
@@ -137,7 +143,9 @@
 
 <span class='fu'>tui_tooltip</span>(<span class='no'>tui</span>, <span class='no'>...</span>)
 
-<span class='fu'>tui_plot</span>(<span class='no'>tui</span>, <span class='no'>...</span>)</pre>
+<span class='fu'>tui_plot</span>(<span class='no'>tui</span>, <span class='no'>...</span>)
+
+<span class='fu'>tui_chartExportMenu</span>(<span class='no'>tui</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,6 +165,54 @@
     <p>A <code>tuichart</code> <code>htmlwidget</code> object.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># See the vignette for examples</span>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/utils/topics/vignette'>vignette</a></span>(<span class='st'>"options"</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>"tuichartr"</span>)</div><div class='output co'>#&gt; <span class='warning'>Warning: vignette 'options' not found</span></div><div class='input'>
+
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>tuichartr</span>)
+
+<span class='co'># a classic scatter plot</span>
+<span class='no'>my_scatter</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='tuichart.html'>tuichart</a></span>(<span class='st'>"scatter"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add-data.html'>add_data</a></span>(<span class='no'>iris</span>, <span class='fu'><a href='tuichartr-exports.html'>aes</a></span>(<span class='no'>Sepal.Length</span>, <span class='no'>Sepal.Width</span>, <span class='kw'>group</span> <span class='kw'>=</span> <span class='no'>Species</span>))
+
+
+<span class='co'># add a title</span>
+<span class='no'>my_scatter</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_chart</span>(<span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"Classic Iris example"</span>)
+
+<span class='co'># format numeric values in all chart</span>
+<span class='co'># (x-axis, y-axis, tooltip)</span>
+<span class='no'>my_scatter</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_chart</span>(<span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"0.00"</span>)
+
+
+<span class='co'># hide legend</span>
+<span class='no'>my_scatter</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_legend</span>(<span class='kw'>visible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+<span class='co'># or change position and hide</span>
+<span class='co'># checkbox to show/hide group</span>
+<span class='no'>my_scatter</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_legend</span>(
+    <span class='kw'>align</span> <span class='kw'>=</span> <span class='st'>"bottom"</span>, <span class='co'># or top, left, right</span>
+    <span class='kw'>showCheckbox</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+  )
+
+
+<span class='co'># hide the export menu</span>
+<span class='no'>my_scatter</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_chartExportMenu</span>(<span class='kw'>visible</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+
+
+<span class='co'># some options for axis</span>
+<span class='no'>my_scatter</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_xAxis</span>(
+    <span class='kw'>tickInterval</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"X axis title"</span> <span class='co'># title</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'>tui_yAxis</span>(
+    <span class='kw'>max</span> <span class='kw'>=</span> <span class='fl'>10</span> <span class='co'># y max value</span>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -164,7 +220,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

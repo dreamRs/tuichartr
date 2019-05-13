@@ -89,7 +89,13 @@
       <a href="../articles/maps.html">Maps</a>
     </li>
     <li>
+      <a href="../articles/options.html">Options</a>
+    </li>
+    <li>
       <a href="../articles/starting-with-tuichartr.html">Starting with tuichartr</a>
+    </li>
+    <li>
+      <a href="../articles/timeseries.html">Timeseries</a>
     </li>
   </ul>
 </li>
@@ -97,7 +103,7 @@
       
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/dreamRs/tuicalendr">
+  <a href="https://github.com/dreamRs/tuichartr">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -115,7 +121,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Create a <code>tuichart</code> htmlwidget</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dreamRs/tuicalendr/blob/master/R/tuichart.R'><code>R/tuichart.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/dreamRs/tuichartr/blob/master/R/tuichart.R'><code>R/tuichart.R</code></a></small>
     <div class="hidden name"><code>tuichart.Rd</code></div>
     </div>
 
@@ -162,6 +168,56 @@
     <p>A <code>tuichart</code> <code>htmlwidget</code> object.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'>
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>gapminder</span>)
+<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/library'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attachement du package : 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'>
+<span class='no'>n_countries</span> <span class='kw'>&lt;-</span> <span class='no'>gapminder_unfiltered</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>year</span> <span class='kw'>==</span> <span class='fl'>2007</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/tally.html'>count</a></span>(<span class='no'>continent</span>)
+
+<span class='co'># a barchart</span>
+<span class='fu'>tuichart</span>(<span class='st'>"column"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add-data.html'>add_data</a></span>(<span class='no'>n_countries</span>, <span class='fu'><a href='tuichartr-exports.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>continent</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>n</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_series</a></span>(<span class='kw'>showLabel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># a treemap</span>
+<span class='fu'>tuichart</span>(<span class='st'>"treemap"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add-data.html'>add_data</a></span>(<span class='no'>n_countries</span>, <span class='fu'><a href='tuichartr-exports.html'>aes</a></span>(<span class='kw'>level1</span> <span class='kw'>=</span> <span class='no'>continent</span>, <span class='kw'>value</span> <span class='kw'>=</span> <span class='no'>n</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_series</a></span>(<span class='kw'>showLabel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='co'># a pie chart</span>
+<span class='fu'>tuichart</span>(<span class='st'>"pie"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add-data.html'>add_data</a></span>(<span class='no'>n_countries</span>, <span class='fu'><a href='tuichartr-exports.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>continent</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>n</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_series</a></span>(<span class='kw'>showLabel</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+
+
+<span class='no'>gdp_italy</span> <span class='kw'>&lt;-</span> <span class='no'>gapminder_unfiltered</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span>(<span class='no'>country</span> <span class='kw'>==</span> <span class='st'>"Italy"</span>)
+
+<span class='co'># line chart</span>
+<span class='fu'>tuichart</span>(<span class='st'>"line"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='add-data.html'>add_data</a></span>(<span class='no'>gdp_italy</span>, <span class='fu'><a href='tuichartr-exports.html'>aes</a></span>(<span class='kw'>x</span> <span class='kw'>=</span> <span class='no'>year</span>, <span class='kw'>y</span> <span class='kw'>=</span> <span class='no'>gdpPercap</span>)) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_chart</a></span>(
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"A chart"</span>,
+    <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"0.00"</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_series</a></span>(
+    <span class='kw'>zoomable</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_plot</a></span>(
+    <span class='kw'>hideLine</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  ) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='tui-options.html'>tui_xAxis</a></span>(
+    <span class='kw'>tickInterval</span> <span class='kw'>=</span> <span class='st'>"auto"</span>,
+    <span class='kw'>title</span> <span class='kw'>=</span> <span class='st'>"X axis title"</span>
+  )</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -169,7 +225,9 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
