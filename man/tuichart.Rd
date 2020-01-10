@@ -4,8 +4,14 @@
 \alias{tuichart}
 \title{Create a \code{tuichart} htmlwidget}
 \usage{
-tuichart(type = "bar", data = NULL, options = NULL, width = NULL,
-  height = NULL, elementId = NULL)
+tuichart(
+  type = "bar",
+  data = NULL,
+  options = NULL,
+  width = NULL,
+  height = NULL,
+  elementId = NULL
+)
 }
 \arguments{
 \item{type}{Type of chart.}

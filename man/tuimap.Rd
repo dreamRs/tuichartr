@@ -4,8 +4,16 @@
 \alias{tuimap}
 \title{Create a \code{tuimap} htmlwidget}
 \usage{
-tuimap(shape = NULL, code = NULL, label = NULL, data = NULL,
-  options = NULL, width = NULL, height = NULL, elementId = NULL)
+tuimap(
+  shape = NULL,
+  code = NULL,
+  label = NULL,
+  data = NULL,
+  options = NULL,
+  width = NULL,
+  height = NULL,
+  elementId = NULL
+)
 }
 \arguments{
 \item{shape}{An \code{sf} object.}
