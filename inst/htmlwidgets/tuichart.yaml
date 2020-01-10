@@ -1,6 +1,6 @@
 dependencies:
   - name: tui-chart
-    version: 3.7.0
+    version: 3.9.0
     src: htmlwidgets/assets
     script: tui-chart-all.min.js
     stylesheet: tui-chart.min.css
