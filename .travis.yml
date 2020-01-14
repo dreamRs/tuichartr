@@ -3,6 +3,7 @@ dist: trusty
 sudo: required
 cache: packages
 
+r_check_args: "--no-build-vignettes"
 
 apt_packages:
   - libudunits2-dev
