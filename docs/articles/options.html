@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Options • tuichartr</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Options">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">tuichartr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -38,9 +39,12 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
+</li>
+<li>
+  <a href="../articles/tuichartr.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
@@ -59,9 +63,6 @@
       <a href="../articles/options.html">Options</a>
     </li>
     <li>
-      <a href="../articles/starting-with-tuichartr.html">Starting with tuichartr</a>
-    </li>
-    <li>
       <a href="../articles/timeseries.html">Timeseries</a>
     </li>
   </ul>
@@ -70,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/dreamRs/tuichartr">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -83,8 +84,9 @@
 <!--/.navbar -->
 
       
-      </header><script src="options_files/htmlwidgets-1.3/htmlwidgets.js"></script><link href="options_files/tui-chart-3.7.0/tui-chart.min.css" rel="stylesheet">
-<script src="options_files/tui-chart-3.7.0/tui-chart-all.min.js"></script><script src="options_files/tuichart-binding-0.0.0.9000/tuichart.js"></script><div class="row">
+
+      </header><script src="options_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><link href="options_files/tui-chart-3.9.0/tui-chart.min.css" rel="stylesheet">
+<script src="options_files/tui-chart-3.9.0/tui-chart-all.min.js"></script><script src="options_files/tuichart-binding-0.1.0/tuichart.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Options</h1>
@@ -97,26 +99,26 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tuichartr)</a>
-<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gapminder)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)</a>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tuichartr)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(gapminder)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyr)</a>
 <a class="sourceLine" id="cb1-5" title="5"></a>
 <a class="sourceLine" id="cb1-6" title="6"><span class="co"># Datas</span></a>
 <a class="sourceLine" id="cb1-7" title="7">dodge_cols &lt;-<span class="st"> </span>gapminder_unfiltered <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1950</span>, <span class="dv">2007</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(year <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1950</span>, <span class="dv">2007</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb1-9" title="9"><span class="st">  </span><span class="kw">count</span>(continent, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb1-10" title="10"><span class="st">  </span><span class="kw">complete</span>(continent, year)</a>
 <a class="sourceLine" id="cb1-11" title="11"></a>
 <a class="sourceLine" id="cb1-12" title="12">simple_cols &lt;-<span class="st"> </span>gapminder_unfiltered <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb1-13" title="13"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2007</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb1-14" title="14"><span class="st">  </span><span class="kw">count</span>(continent)</a>
 <a class="sourceLine" id="cb1-15" title="15"></a>
 <a class="sourceLine" id="cb1-16" title="16">line_one &lt;-<span class="st"> </span>gapminder <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-17" title="17"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(country <span class="op">==</span><span class="st"> "Italy"</span>)</a>
+<a class="sourceLine" id="cb1-17" title="17"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(country <span class="op">==</span><span class="st"> "Italy"</span>)</a>
 <a class="sourceLine" id="cb1-18" title="18"></a>
 <a class="sourceLine" id="cb1-19" title="19">line_two &lt;-<span class="st"> </span>gapminder_unfiltered <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb1-20" title="20"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter</a></span>(country <span class="op">==</span><span class="st"> "Italy"</span>)</a>
+<a class="sourceLine" id="cb1-20" title="20"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span>(country <span class="op">==</span><span class="st"> "Italy"</span>)</a>
 <a class="sourceLine" id="cb1-21" title="21"></a>
 <a class="sourceLine" id="cb1-22" title="22"><span class="co"># Charts</span></a>
 <a class="sourceLine" id="cb1-23" title="23">dodge_cols &lt;-<span class="st"> </span><span class="kw"><a href="../reference/tuichart.html">tuichart</a></span>(<span class="st">"column"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
@@ -136,12 +138,12 @@
 <p>Set title :</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">dodge_cols <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/tui-options.html">tui_chart</a></span>(<span class="dt">title =</span> <span class="st">"Chart title"</span>)</a></code></pre></div>
-<div id="htmlwidget-445d1cf0d1782cc18daf" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-445d1cf0d1782cc18daf">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"chart":{"title":"Chart title"}}},"evals":[],"jsHooks":[]}</script><p>Format value:</p>
+<div id="htmlwidget-3963ba3ed9eb66e4497c" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3963ba3ed9eb66e4497c">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"chart":{"title":"Chart title"}}},"evals":[],"jsHooks":[]}</script><p>Format value:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">dodge_cols <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/tui-options.html">tui_chart</a></span>(<span class="dt">format =</span> <span class="st">"0.00"</span>) <span class="co"># force 2 decimal</span></a></code></pre></div>
-<div id="htmlwidget-060050268f6b2fe176b6" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-060050268f6b2fe176b6">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"chart":{"format":"0.00"}}},"evals":[],"jsHooks":[]}</script><p>Or use <code>"1,000"</code> for use a comma as thousand separator.</p>
+<div id="htmlwidget-0a732b6c11b5832f52d1" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0a732b6c11b5832f52d1">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"chart":{"format":"0.00"}}},"evals":[],"jsHooks":[]}</script><p>Or use <code>"1,000"</code> for use a comma as thousand separator.</p>
 </div>
 <div id="legend" class="section level2">
 <h2 class="hasAnchor">
@@ -152,8 +154,8 @@
 <a class="sourceLine" id="cb4-4" title="4">    <span class="dt">align =</span> <span class="st">"bottom"</span>, <span class="co"># or top, left, right</span></a>
 <a class="sourceLine" id="cb4-5" title="5">    <span class="dt">showCheckbox =</span> <span class="ot">FALSE</span> <span class="co"># hide or show checkbox to select serie</span></a>
 <a class="sourceLine" id="cb4-6" title="6">  )</a></code></pre></div>
-<div id="htmlwidget-2d29520db39be428971f" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2d29520db39be428971f">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"legend":{"visible":true,"align":"bottom","showCheckbox":false}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ac63d30ed05741b46b0e" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ac63d30ed05741b46b0e">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"legend":{"visible":true,"align":"bottom","showCheckbox":false}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="series" class="section level2">
 <h2 class="hasAnchor">
@@ -163,22 +165,22 @@
 <a class="sourceLine" id="cb5-3" title="3">    <span class="dt">showLabel =</span> <span class="ot">TRUE</span>, <span class="co"># show bars value</span></a>
 <a class="sourceLine" id="cb5-4" title="4">    <span class="dt">barWidth =</span> <span class="dv">100</span></a>
 <a class="sourceLine" id="cb5-5" title="5">  )</a></code></pre></div>
-<div id="htmlwidget-c3d230e4edb8039a0dcf" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c3d230e4edb8039a0dcf">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"n","data":[53,33,43,34,9,11]}]},"options":{"series":{"showLabel":true,"barWidth":100}}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"></a>
+<div id="htmlwidget-ab745108c729a304a947" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ab745108c729a304a947">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"n","data":[53,33,43,34,9,11]}]},"options":{"series":{"showLabel":true,"barWidth":100}}},"evals":[],"jsHooks":[]}</script><div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"></a>
 <a class="sourceLine" id="cb6-2" title="2">dodge_cols <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="../reference/tui-options.html">tui_series</a></span>(</a>
 <a class="sourceLine" id="cb6-4" title="4">    <span class="dt">stackType =</span> <span class="st">"percent"</span></a>
 <a class="sourceLine" id="cb6-5" title="5">  )</a></code></pre></div>
-<div id="htmlwidget-a5173e4501bbf69df89b" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a5173e4501bbf69df89b">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"series":{"stackType":"percent"}}},"evals":[],"jsHooks":[]}</script><p>There are specific options depending on the type of graph. Example for lines:</p>
+<div id="htmlwidget-e7cf9aab84e9b83b4da0" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e7cf9aab84e9b83b4da0">{"x":{"type":"columnChart","data":{"categories":["Africa","Americas","Asia","Europe","FSU","Oceania"],"series":[{"name":"1950","data":[2,7,4,22,2,2]},{"name":"2007","data":[53,33,43,34,9,11]}]},"options":{"series":{"stackType":"percent"}}},"evals":[],"jsHooks":[]}</script><p>There are specific options depending on the type of graph. Example for lines:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">line_one <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw"><a href="../reference/tui-options.html">tui_series</a></span>(</a>
 <a class="sourceLine" id="cb7-3" title="3">    <span class="dt">showDot =</span> <span class="ot">TRUE</span>, <span class="co"># whether show dot or not</span></a>
 <a class="sourceLine" id="cb7-4" title="4">    <span class="dt">spline =</span> <span class="ot">TRUE</span>, <span class="co"># whether spline chart or not</span></a>
 <a class="sourceLine" id="cb7-5" title="5">    <span class="dt">zoomable =</span> <span class="ot">TRUE</span> <span class="co"># whether can zoom by mouse drag or not</span></a>
 <a class="sourceLine" id="cb7-6" title="6">  )</a></code></pre></div>
-<div id="htmlwidget-3db107866610e736dbb9" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3db107866610e736dbb9">{"x":{"type":"lineChart","data":{"categories":["1952","1957","1962","1967","1972","1977","1982","1987","1992","1997","2002","2007"],"series":[{"name":"gdpPercap","data":[4931.404155,6248.656232,8243.58234,10022.40131,12269.27378,14255.98475,16537.4835,19207.23482,22013.64486,24675.02446,27968.09817,28569.7197]}]},"options":{"series":{"showDot":true,"spline":true,"zoomable":true}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f7f2721721a3483d5a30" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f7f2721721a3483d5a30">{"x":{"type":"lineChart","data":{"categories":["1952","1957","1962","1967","1972","1977","1982","1987","1992","1997","2002","2007"],"series":[{"name":"gdpPercap","data":[4931.404155,6248.656232,8243.58234,10022.40131,12269.27378,14255.98475,16537.4835,19207.23482,22013.64486,24675.02446,27968.09817,28569.7197]}]},"options":{"series":{"showDot":true,"spline":true,"zoomable":true}}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="axis" class="section level2">
 <h2 class="hasAnchor">
@@ -191,12 +193,13 @@
 <a class="sourceLine" id="cb8-6" title="6"><span class="st">  </span><span class="kw"><a href="../reference/tui-options.html">tui_yAxis</a></span>(</a>
 <a class="sourceLine" id="cb8-7" title="7">    <span class="dt">max =</span> <span class="dv">50000</span> <span class="co"># y max value</span></a>
 <a class="sourceLine" id="cb8-8" title="8">  )</a></code></pre></div>
-<div id="htmlwidget-2f0994bba7fb0f0d6ee2" style="width:100%;height:350px;" class="tuichart html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2f0994bba7fb0f0d6ee2">{"x":{"type":"lineChart","data":{"categories":["1950","1951","1952","1953","1954","1955","1956","1957","1958","1959","1960","1961","1962","1963","1964","1965","1966","1967","1968","1969","1970","1971","1972","1973","1974","1975","1976","1977","1978","1979","1980","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2007"],"series":[{"name":"gdpPercap","data":[4461.067193,4719.636757,4931.404155,5222.079917,5436.140736,5733.705071,5958.252391,6248.656232,6518.368168,6885.772019,7314.830776,7820.210212,8243.58234,8636.90716,8821.596841,9011.540421,9503.610165,10022.40131,10694.07481,11274.39824,11788.23346,11939.21503,12269.27378,13133.74758,13614.98029,13160.78533,14021.92932,14255.98475,14831.3966,15712.13998,16201.88298,16362.80286,16537.4835,16717.44341,17530.69389,18078.9509,18479.36644,19207.23482,20293.85091,21166.47838,21561.42044,21755.39858,22013.64486,21826.21878,22471.2282,23680.30912,23897.55367,24675.02446,25409.99448,26128.82464,27160.46843,27779.73034,27968.09817,27839.64196,27887.57345,28569.7197]}]},"options":{"xAxis":{"tickInterval":"auto","title":"X axis title"},"yAxis":{"max":50000}}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f5a250c40ba1cd07869f" style="width:100%;height:350px;" class="tuichart html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f5a250c40ba1cd07869f">{"x":{"type":"lineChart","data":{"categories":["1950","1951","1952","1953","1954","1955","1956","1957","1958","1959","1960","1961","1962","1963","1964","1965","1966","1967","1968","1969","1970","1971","1972","1973","1974","1975","1976","1977","1978","1979","1980","1981","1982","1983","1984","1985","1986","1987","1988","1989","1990","1991","1992","1993","1994","1995","1996","1997","1998","1999","2000","2001","2002","2003","2004","2007"],"series":[{"name":"gdpPercap","data":[4461.067193,4719.636757,4931.404155,5222.079917,5436.140736,5733.705071,5958.252391,6248.656232,6518.368168,6885.772019,7314.830776,7820.210212,8243.58234,8636.90716,8821.596841,9011.540421,9503.610165,10022.40131,10694.07481,11274.39824,11788.23346,11939.21503,12269.27378,13133.74758,13614.98029,13160.78533,14021.92932,14255.98475,14831.3966,15712.13998,16201.88298,16362.80286,16537.4835,16717.44341,17530.69389,18078.9509,18479.36644,19207.23482,20293.85091,21166.47838,21561.42044,21755.39858,22013.64486,21826.21878,22471.2282,23680.30912,23897.55367,24675.02446,25409.99448,26128.82464,27160.46843,27779.73034,27968.09817,27839.64196,27887.57345,28569.7197]}]},"options":{"xAxis":{"tickInterval":"auto","title":"X axis title"},"yAxis":{"max":50000}}},"evals":[],"jsHooks":[]}</script>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -212,17 +215,20 @@
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by <a href="https://twitter.com/_pvictorr"><img src="https://pbs.twimg.com/profile_images/844237339404722177/E1U61aM8_normal.jpg"> Victor Perrier</a>, <a href="https://twitter.com/_mfaan"><img src="https://pbs.twimg.com/profile_images/912313931326218240/o1-wvA18_normal.jpg"> Fanny Meyer</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
