@@ -22,7 +22,7 @@ library(rnaturalearth)
 
 You can make continuous maps with `tuichartr` and `tuimaps` function. It works with `sf` objects, we'll use package [`rnaturalearth`](https://github.com/ropensci/rnaturalearth) to retrieves shapes.
 
-Mapping for require 3 aesthetics:
+Mapping for creating a map require **3** aesthetics:
 
 * *code*: a unique identifiers for polygons
 * *label*: a label for the polygon, this is the name that will be displayed on tooltip.

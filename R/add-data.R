@@ -267,16 +267,18 @@ add_tree_data <- function(tui, data, mapping) {
   tui
 }
 
-make_child <- function(labels, values) {
+make_child <- function(labels, values, ...) {
   mapply(
-    FUN = function(label, value) {
+    FUN = function(label, value, ...) {
       list(
         label = label,
-        value = value
+        value = value,
+        ...
       )
     },
     label = labels,
     value = values,
+    ...,
     SIMPLIFY = FALSE,
     USE.NAMES = FALSE
   )
@@ -289,14 +291,33 @@ split_rec <- function(df, level = 1) {
   if (all(table(df[[paste0("level", level)]]) == 1)) {
     label <- unique(df[[paste0("level", level - 1)]])
     if (is.null(label)) {
-      make_child(df[[paste0("level", level)]], values = df$value)
+      # make_child(df[[paste0("level", level)]], values = df$value)
+      do.call(
+        what = "make_child",
+        args = c(
+          list(
+            labels = df[[paste0("level", level)]],
+            values = df$value
+          ),
+          as.list(df[!names(df) %in% c(paste0("level", level), "value")])
+        )
+      )
     } else {
       list(
         label = label,
-        children = make_child(df[[paste0("level", level)]], values = df$value)
+        # children = make_child(df[[paste0("level", level)]], values = df$value)
+        children = do.call(
+          what = "make_child",
+          args = c(
+            list(
+              labels = df[[paste0("level", level)]],
+              values = df$value
+            ),
+            as.list(df[!names(df) %in% c(paste0("level", level), "value")])
+          )
+        )
       )
     }
-
   } else {
     dfsplit <- split(x = df, f = df[[paste0("level", level)]])
     lapply(

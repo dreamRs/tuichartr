@@ -224,6 +224,8 @@ tuichart("heatmap") %>%
 
 ## Treemap
 
+`level2` aesthetic is optional.
+
 ```{r}
 # Datas
 treemap <- gapminder %>% 
@@ -243,6 +245,24 @@ tuichart("treemap") %>%
   ) %>% 
   tui_chart(title = "Most populated countries per continent")
 ```
+
+
+With drilldown:
+
+```{r}
+tuichart("treemap") %>%
+  add_data(
+    data = treemap,
+    mapping = aes(level1 = continent, level2 = country, value = pop)
+  ) %>% 
+  tui_series(
+    showLabel = TRUE,
+    zoomable = TRUE,
+    useLeafLabel = FALSE
+  ) %>% 
+  tui_chart(title = "Most populated countries per continent")
+```
+
 
 
 
